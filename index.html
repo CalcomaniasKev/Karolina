@@ -1,0 +1,227 @@
+# Código completo HTML + CSS + JS
+
+Guarda esto como `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regalo Sorpresa</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#000;
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Fondo rojo tipo gamer */
+    body::before{
+      content:"";
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:red;
+      filter:blur(180px);
+      opacity:0.35;
+      top:-100px;
+      left:-100px;
+    }
+
+    body::after{
+      content:"";
+      position:absolute;
+      width:400px;
+      height:400px;
+      background:#ff0000;
+      filter:blur(150px);
+      opacity:0.2;
+      bottom:-120px;
+      right:-120px;
+    }
+
+    .card{
+      width:350px;
+      background:#111;
+      border:1px solid rgba(255,0,0,0.3);
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 0 25px rgba(255,0,0,0.3);
+      position:relative;
+      z-index:2;
+      animation:fadeIn 1s ease;
+    }
+
+    .topbar{
+      width:100%;
+      height:12px;
+      background:#1f1f1f;
+      border-radius:10px;
+      margin-bottom:25px;
+      position:relative;
+    }
+
+    .topbar::before,
+    .topbar::after{
+      content:"";
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      top:1px;
+    }
+
+    .topbar::before{
+      left:10px;
+      background:#ff3b3b;
+    }
+
+    .topbar::after{
+      left:28px;
+      background:#ffcc00;
+    }
+
+    h2{
+      color:white;
+      text-align:center;
+      margin-bottom:20px;
+      font-size:22px;
+    }
+
+    .typing{
+      color:#ff4d4d;
+      text-align:center;
+      margin-bottom:20px;
+      min-height:25px;
+      font-size:15px;
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      outline:none;
+      background:#1e1e1e;
+      color:white;
+      margin-bottom:15px;
+      font-size:15px;
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(90deg,#ff0000,#ff4d4d);
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:scale(1.03);
+      box-shadow:0 0 20px rgba(255,0,0,0.5);
+    }
+
+    .mensaje{
+      display:none;
+      text-align:center;
+      color:white;
+      margin-top:20px;
+      animation:fadeIn 1s ease;
+    }
+
+    .mensaje h1{
+      color:#ff4d4d;
+      margin-bottom:10px;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="topbar"></div>
+
+    <h2>🎁 Sorpresa Especial</h2>
+
+    <div class="typing" id="typing"></div>
+
+    <input type="text" id="nombre" placeholder="Escribe tu nombre...">
+
+    <button onclick="mostrarMensaje()">Ver sorpresa</button>
+
+    <div class="mensaje" id="mensaje">
+      <h1>❤️ Te quiero mucho ❤️</h1>
+      <p>Este regalo fue hecho especialmente para ti ✨</p>
+    </div>
+  </div>
+
+  <script>
+    const texto = "Hay algo especial preparado para ti... ❤️";
+    let i = 0;
+
+    function escribir(){
+      if(i < texto.length){
+        document.getElementById("typing").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escribir, 60);
+      }
+    }
+
+    escribir();
+
+    function mostrarMensaje(){
+      const nombre = document.getElementById("nombre").value;
+
+      if(nombre.trim() === ""){
+        alert("Escribe tu nombre");
+        return;
+      }
+
+      document.getElementById("mensaje").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
+```
+
+## Cómo usarlo
+
+1. Abre Visual Studio Code.
+2. Crea una carpeta.
+3. Guarda el archivo como `index.html`.
+4. Abre el archivo en Google Chrome.
+
+También puedes subirlo gratis en:
+
+* Netlify
+* Vercel
+* GitHub Pages
