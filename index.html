@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sorpresa Especial</title>
 
 <style>
@@ -24,7 +27,7 @@ body{
     position:relative;
 }
 
-/* Fondo neon */
+/* Fondo rojo neon */
 
 body::before{
     content:"";
@@ -132,6 +135,7 @@ button{
     font-weight:bold;
     cursor:pointer;
     transition:0.3s;
+    margin-top:15px;
 }
 
 button:hover{
@@ -163,10 +167,6 @@ video{
     margin-top:20px;
     box-shadow:0 0 20px rgba(255,0,0,0.5);
     animation:videoFade 1s ease;
-}
-
-.oculto{
-    display:none;
 }
 
 @keyframes entrada{
@@ -212,6 +212,7 @@ video{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -234,6 +235,8 @@ video{
 
 <script>
 
+/* Texto inicial */
+
 const texto = "Hay algo especial preparado para ti ❤️";
 
 let i = 0;
@@ -253,6 +256,8 @@ function escribir(){
 }
 
 escribir();
+
+/* Animacion nombre */
 
 function escribirNombre(texto, elemento, velocidad = 120){
 
@@ -278,6 +283,8 @@ function escribirNombre(texto, elemento, velocidad = 120){
 
 }
 
+/* Mostrar sorpresa */
+
 function mostrarSorpresa(){
 
     const nombre = document.getElementById("nombre").value;
@@ -302,38 +309,77 @@ function mostrarSorpresa(){
                 Este regalo fue hecho especialmente para ti ✨
             </p>
 
-            <video id="video1" autoplay controls>
-                <source src="mananitas.mp4" type="video/mp4">
-            </video>
+            <button onclick="mostrarVideo1()">
+                Ver primera sorpresa 🎥
+            </button>
 
-            <video id="video2" class="oculto" autoplay controls>
-                <source src="pato.mp4" type="video/mp4">
-            </video>
+            <div id="contenedorVideo1" style="display:none;">
+
+                <video id="video1" controls playsinline>
+                    <source src="mananitas.mp4" type="video/mp4">
+                </video>
+
+                <button 
+                    id="botonSegundo"
+                    onclick="mostrarVideo2()"
+                    style="display:none;"
+                >
+                    Ver segunda sorpresa ❤️
+                </button>
+
+            </div>
+
+            <div id="contenedorVideo2" style="display:none;">
+
+                <video id="video2" controls playsinline>
+                    <source src="pato.mp4" type="video/mp4">
+                </video>
+
+            </div>
 
         </div>
 
     `;
 
-    escribirNombre("❤️ " + nombre + " ❤️", document.getElementById("nombreAnimado"));
+    escribirNombre(
+        "❤️ " + nombre + " ❤️",
+        document.getElementById("nombreAnimado")
+    );
+
+}
+
+/* Primer video */
+
+function mostrarVideo1(){
+
+    document.getElementById("contenedorVideo1").style.display = "block";
 
     const video1 = document.getElementById("video1");
-    const video2 = document.getElementById("video2");
 
-    /* Cuando termina el primer video */
+    video1.play();
 
     video1.onended = function(){
 
-        video1.classList.add("oculto");
-
-        video2.classList.remove("oculto");
-
-        video2.play();
+        document.getElementById("botonSegundo").style.display = "block";
 
     };
+
+}
+
+/* Segundo video */
+
+function mostrarVideo2(){
+
+    document.getElementById("contenedorVideo2").style.display = "block";
+
+    const video2 = document.getElementById("video2");
+
+    video2.play();
 
 }
 
 </script>
 
 </body>
+
 </html>
