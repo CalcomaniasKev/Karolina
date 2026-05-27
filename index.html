@@ -3,141 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎂 Feliz Cumpleaños 🎂</title>
+<title>✨ Feliz Cumpleaños ✨</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffd3a5,#fd6585);
-    background-size:400% 400%;
-    animation:fondo 12s ease infinite;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffc3a0,#ffd6e0);
+background-size:400% 400%;
+animation:fondo 12s ease infinite;
 }
 
-.container{
-    text-align:center;
-    color:white;
-    z-index:2;
-    padding:30px;
+.card{
+position:relative;
+width:90%;
+max-width:700px;
+padding:50px;
+text-align:center;
+border-radius:35px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(18px);
+box-shadow:0 10px 40px rgba(0,0,0,.2);
+animation:aparecer 2s ease;
+z-index:2;
 }
 
 h1{
-    font-size:3rem;
-    animation:entrada 2s ease;
-    text-shadow:0 0 15px rgba(255,255,255,.8);
+font-size:3rem;
+color:white;
+text-shadow:0 0 20px rgba(255,255,255,.9);
+margin-bottom:20px;
+animation:brillo 3s infinite alternate;
 }
 
 p{
-    margin-top:15px;
-    font-size:1.3rem;
-    animation:entrada 3s ease;
+font-size:1.3rem;
+color:white;
+line-height:1.8;
+opacity:0;
+animation:texto 2s ease forwards;
+animation-delay:1s;
 }
 
 button{
-    margin-top:30px;
-    padding:15px 35px;
-    border:none;
-    border-radius:35px;
-    font-size:1rem;
-    cursor:pointer;
-    background:white;
-    color:#ff4f81;
-    transition:.4s;
-    box-shadow:0 8px 20px rgba(0,0,0,.2);
+margin-top:35px;
+padding:16px 35px;
+border:none;
+border-radius:40px;
+font-size:1rem;
+cursor:pointer;
+background:white;
+color:#ff4f81;
+font-weight:bold;
+transition:.4s;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
 button:hover{
-    transform:scale(1.08);
+transform:scale(1.08);
+}
+
+.sparkle,.heart{
+position:absolute;
+pointer-events:none;
+}
+
+.sparkle{
+color:white;
+animation:subir linear infinite;
+opacity:.7;
 }
 
 .heart{
-    position:absolute;
-    color:white;
-    animation:subir linear infinite;
-    opacity:.7;
+color:#fff;
+animation:flotar linear infinite;
 }
 
 @keyframes fondo{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-@keyframes entrada{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+@keyframes aparecer{
+from{
+opacity:0;
+transform:translateY(50px) scale(.9);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+@keyframes texto{
+to{
+opacity:1;
+}
+}
+
+@keyframes brillo{
+from{
+text-shadow:0 0 15px white;
+}
+to{
+text-shadow:0 0 35px white,0 0 55px #ffd1dc;
+}
+}
+
+@keyframes flotar{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
 }
 
 @keyframes subir{
-    0%{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-    50%{
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+transform:translateY(-10vh) rotate(360deg);
+opacity:0;
+}
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>🎂 ¡Feliz Cumpleaños! 🎂</h1>
-    <p id="mensaje">
-        Hoy es un día muy especial ✨<br>
-        Deseo que tu vida esté llena de alegría, amor y sueños cumplidos 💖
-    </p>
+<div class="card">
 
-    <button onclick="cambiarMensaje()">
-        ❤️ Abrir sorpresa ❤️
-    </button>
+<h1>🎂 Feliz Cumpleaños 🎂</h1>
+
+<p id="mensaje">
+Hoy no es un día cualquiera ✨<br><br>
+
+Es el día en que el mundo recibió a una persona muy especial 💖<br><br>
+
+Que nunca te falten motivos para sonreír, sueños por cumplir y personas que te quieran bonito 🌸✨
+</p>
+
+<button onclick="sorpresa()">
+💌 Abrir mensaje 💌
+</button>
+
 </div>
 
 <script>
 
-function cambiarMensaje(){
-    document.getElementById("mensaje").innerHTML=
-    "💖 Gracias por existir 💖<br><br>Que este cumpleaños esté lleno de sonrisas, amor y momentos inolvidables ✨🎉";
+function sorpresa(){
+document.getElementById("mensaje").innerHTML=
+`
+💖 Gracias por existir 💖<br><br>
+
+Deseo que este nuevo año de vida llegue lleno de alegría, amor y momentos inolvidables ✨🎉<br><br>
+
+Que cada sonrisa, cada abrazo y cada sueño hagan de tu vida algo maravilloso 🌷💫
+`;
 }
 
-// Corazones flotando
 function crearCorazon(){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(15+Math.random()*30)+"px";
-    heart.style.animationDuration=(4+Math.random()*4)+"s";
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*30)+"px";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+document.body.appendChild(heart);
 
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },8000);
+setTimeout(()=>heart.remove(),8000);
 }
 
-setInterval(crearCorazon,300);
+function crearBrillo(){
+let s=document.createElement("div");
+s.className="sparkle";
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"vw";
+s.style.fontSize=(10+Math.random()*25)+"px";
+s.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),10000);
+}
+
+setInterval(crearCorazon,400);
+setInterval(crearBrillo,600);
 
 </script>
 
