@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ Feliz Cumpleaños ❤️</title>
+<title>🎂 Feliz Cumpleaños 🎂</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -18,80 +18,65 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
     overflow:hidden;
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffd3a5,#fd6585);
+    background-size:400% 400%;
+    animation:fondo 12s ease infinite;
 }
 
 .container{
     text-align:center;
-    padding:20px;
+    color:white;
     z-index:2;
-    animation:fadeIn 2s ease;
+    padding:30px;
 }
 
 h1{
-    color:white;
     font-size:3rem;
-    text-shadow:0 0 20px rgba(255,255,255,.8);
-    margin-bottom:15px;
+    animation:entrada 2s ease;
+    text-shadow:0 0 15px rgba(255,255,255,.8);
 }
 
 p{
-    color:white;
+    margin-top:15px;
     font-size:1.3rem;
-    margin-bottom:30px;
-}
-
-.buttons{
-    display:none;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    animation:showButtons 1.5s ease;
+    animation:entrada 3s ease;
 }
 
 button{
+    margin-top:30px;
+    padding:15px 35px;
     border:none;
-    outline:none;
-    padding:15px 30px;
-    border-radius:40px;
-    cursor:pointer;
-    color:white;
+    border-radius:35px;
     font-size:1rem;
-    background:rgba(255,255,255,.2);
-    backdrop-filter:blur(10px);
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    cursor:pointer;
+    background:white;
+    color:#ff4f81;
     transition:.4s;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
 button:hover{
-    transform:translateY(-5px) scale(1.05);
-    background:rgba(255,255,255,.35);
-}
-
-.video-container{
-    margin-top:30px;
-    animation:fadeIn 1s ease;
-}
-
-video{
-    width:90%;
-    max-width:700px;
-    border-radius:25px;
-    box-shadow:0 0 30px rgba(255,255,255,.5);
+    transform:scale(1.08);
 }
 
 .heart{
     position:absolute;
     color:white;
-    animation:float 6s linear infinite;
+    animation:subir linear infinite;
     opacity:.7;
 }
 
-@keyframes fadeIn{
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+@keyframes entrada{
     from{
         opacity:0;
-        transform:translateY(20px);
+        transform:translateY(30px);
     }
     to{
         opacity:1;
@@ -99,18 +84,7 @@ video{
     }
 }
 
-@keyframes showButtons{
-    from{
-        opacity:0;
-        transform:scale(.8);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-@keyframes float{
+@keyframes subir{
     0%{
         transform:translateY(100vh);
         opacity:0;
@@ -129,62 +103,41 @@ video{
 <body>
 
 <div class="container">
+    <h1>🎂 ¡Feliz Cumpleaños! 🎂</h1>
+    <p id="mensaje">
+        Hoy es un día muy especial ✨<br>
+        Deseo que tu vida esté llena de alegría, amor y sueños cumplidos 💖
+    </p>
 
-<h1>❤️ Te quiero mucho ❤️</h1>
-
-<p>Este regalo fue hecho especialmente para ti 🎂✨</p>
-
-<div class="buttons" id="buttons">
-
-<button onclick="playVideo('mananitas.mp4')">
-🎵 Ver Mañanitas
-</button>
-
-<button onclick="playVideo('pato.mp4')">
-🦆 Ver Pato
-</button>
-
-</div>
-
-<div class="video-container" id="videoContainer"></div>
-
+    <button onclick="cambiarMensaje()">
+        ❤️ Abrir sorpresa ❤️
+    </button>
 </div>
 
 <script>
 
-// Botones aparecen después del mensaje
-setTimeout(()=>{
-    document.getElementById("buttons").style.display="flex";
-},2500);
-
-// Reproducir video
-function playVideo(video){
-    document.getElementById("videoContainer").innerHTML = `
-        <video controls autoplay>
-            <source src="${video}" type="video/mp4">
-        </video>
-    `;
+function cambiarMensaje(){
+    document.getElementById("mensaje").innerHTML=
+    "💖 Gracias por existir 💖<br><br>Que este cumpleaños esté lleno de sonrisas, amor y momentos inolvidables ✨🎉";
 }
 
-// Corazones animados
-function createHeart(){
-
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤️";
-
+// Corazones flotando
+function crearCorazon(){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(15+Math.random()*25)+"px";
-    heart.style.animationDuration=(4+Math.random()*3)+"s";
+    heart.style.fontSize=(15+Math.random()*30)+"px";
+    heart.style.animationDuration=(4+Math.random()*4)+"s";
 
     document.body.appendChild(heart);
 
     setTimeout(()=>{
         heart.remove();
-    },7000);
+    },8000);
 }
 
-setInterval(createHeart,300);
+setInterval(crearCorazon,300);
 
 </script>
 
